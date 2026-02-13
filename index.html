@@ -5,24 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
 <title>For My Bamidele ❤️</title>  
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>  
     :root {  
-        --primary-pink: #ff758c; 
-        --deep-rose: #ff4b2b;  
-        --soft-gold: #f9d423;  
+        --valentine-red: #e63946;
+        --soft-pink: #ffb3c1;
+        --deep-pink: #fb6f92;
+        --pure-white: #ffffff;
     }  
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }  
 
     body {  
         font-family: 'Montserrat', sans-serif;  
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        /* Red and Pink Gradient Background */
+        background: linear-gradient(135deg, #ffb3c1 0%, #ff85a1 50%, #e63946 100%);
         background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        color: #fff;  
+        animation: gradientShift 10s ease infinite;
+        color: var(--valentine-red);  
         min-height: 100vh;  
         display: flex;  
         align-items: center;  
@@ -31,12 +33,13 @@
         padding: 20px;
     }  
 
-    @keyframes gradientBG {
+    @keyframes gradientShift {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
+    /* Floating Red & White Hearts */
     #ambient-elements {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -47,88 +50,107 @@
     .floating {
         position: absolute;
         animation: floatAnim var(--d) linear infinite;
-        opacity: 0.8;
+        opacity: 0.7;
+        filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
     }
 
     @keyframes floatAnim {
-        0% { transform: translateY(110vh) rotate(0deg) scale(1); }
-        100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); }
+        0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
     }
 
     .container {  
         position: relative;  
         z-index: 10;  
         width: 100%;  
-        max-width: 420px;
+        max-width: 400px;
     }  
 
     .glass-card {  
-        background: rgba(255, 255, 255, 0.15);  
-        backdrop-filter: blur(20px);  
-        -webkit-backdrop-filter: blur(20px);  
-        border-radius: 40px;  
-        padding: 3rem 2rem;  
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);  
+        background: rgba(255, 255, 255, 0.92);  
+        backdrop-filter: blur(10px);  
+        border-radius: 35px;  
+        padding: 2.5rem 1.8rem;  
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);  
         text-align: center;  
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        animation: cardEntry 0.8s ease-out;
+        border: 4px solid var(--pure-white);
+        animation: popIn 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     }  
 
-    @keyframes cardEntry {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
+    @keyframes popIn {
+        from { transform: scale(0); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
 
-    h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 1rem; }  
-    .cursive { font-family: 'Dancing Script', cursive; color: var(--soft-gold); font-size: 2.8rem; margin-bottom: 15px; display: block; }  
+    h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--valentine-red); margin-bottom: 1rem; }  
+    .cursive { font-family: 'Dancing Script', cursive; color: var(--deep-pink); font-size: 2.5rem; margin-bottom: 10px; display: block; }  
 
-    .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 2rem; }  
+    .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 1.5rem; }  
     
     .main-btn {  
-        padding: 18px;  
-        font-size: 1.1rem;  
-        border-radius: 20px;  
+        padding: 16px;  
+        font-size: 1rem;  
+        border-radius: 50px;  
         border: none;  
         cursor: pointer;  
         font-weight: 700;
         transition: all 0.3s ease;
         text-transform: uppercase;
+        letter-spacing: 1px;
     }  
 
-    #yesBtn, .gift-btn, .chat-btn { 
-        background: white; 
-        color: #e73c7e;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    #yesBtn, .gift-btn { 
+        background: var(--valentine-red); 
+        color: white;
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
     }
 
-    /* Pulse effect for the final button */
     .chat-btn {
-        background: var(--soft-gold);
-        color: #000;
-        animation: pulse 2s infinite;
+        background: #25d366; /* WhatsApp Green for clarity */
+        color: white;
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        animation: pulseHeart 1.5s infinite;
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 212, 35, 0.7); }
-        70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(249, 212, 35, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 212, 35, 0); }
+    @keyframes pulseHeart {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
     }
 
-    #noBtn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); }  
+    #noBtn { background: var(--soft-pink); color: var(--valentine-red); }  
 
     #letter-section, #gift-section { display: none; }
 
-    .letter-content { line-height: 1.8; font-size: 1.1rem; text-align: left; margin: 1.5rem 0; max-height: 40vh; overflow-y: auto; font-weight: 300; }  
+    .letter-content { 
+        color: #444; 
+        line-height: 1.6; 
+        font-size: 1.05rem; 
+        text-align: left; 
+        margin: 1rem 0; 
+        border-left: 3px solid var(--soft-pink);
+        padding-left: 15px;
+    }  
 
     .data-amount {
         font-size: 3.5rem;
-        color: var(--soft-gold);
+        color: var(--valentine-red);
         font-family: 'Playfair Display', serif;
-        margin: 10px 0;
-        text-shadow: 0 0 15px rgba(249, 212, 35, 0.5);
+        margin: 5px 0;
+        font-weight: 900;
     }
 
-    .gift-icon { font-size: 4rem; margin-bottom: 10px; display: block; }
+    .voucher-box {
+        background: var(--pure-white);
+        border: 2px dashed var(--soft-pink);
+        padding: 20px;
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+
+    .gift-label { color: var(--deep-pink); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
 </style>  
 </head>  
 <body>  
@@ -139,7 +161,7 @@
             <span class="cursive">My King, Bamidele...</span>  
             <h1>Will you be my Valentine?</h1>  
             <div class="btn-group">  
-                <button class="main-btn" id="yesBtn" onclick="celebrate()">Yes, Forever! 💖</button>  
+                <button class="main-btn" id="yesBtn" onclick="celebrate()">Yes, I will! ❤️</button>  
                 <button class="main-btn" id="noBtn" onmouseover="moveBtn(this)" onclick="moveBtn(this)">No</button>  
             </div>  
         </div>  
@@ -147,47 +169,44 @@
         <div id="letter-section" class="glass-card">  
             <span class="cursive">For You, My Love</span>  
             <div class="letter-content">  
-                <p><strong>To my amazing Bamidele,</strong></p><br>
+                <p><strong>To my amazing Bamidele,</strong></p>
                 <p>Meeting you was a blessing I didn't see coming, but loving you is a choice I make happily every single day.</p><br>
-                <p>You are my strength, my laughter, and the person I want to share every milestone with.</p><br>
+                <p>You are my strength, my laughter, and the person I want to share every milestone with. Thank you for being the wonderful man you are.</p>
                 <p>Happy Valentine, my King. ❤️</p>  
             </div>  
             <button class="main-btn gift-btn" onclick="showGift()">Open Your Valentine Gift 🎁</button>
         </div>
 
         <div id="gift-section" class="glass-card">
-            <span class="cursive">Stay Connected</span>
-            <span class="gift-icon">📱</span>
-            <h2>A Little Surprise</h2>
-            <div class="data-amount">₦10,000</div>
-            <p style="font-weight: 700; margin-bottom: 15px;">Worth of Data Subscription</p>
-            
-            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 20px; margin-bottom: 20px;">
-                <p style="font-size: 1rem; line-height: 1.5;">
-                    "I never want our late-night calls or messages to stop."
-                </p>
-                <p style="margin-top: 10px; color: var(--soft-gold); font-weight: bold;">
-                    👇 Chat me up now to claim your data!
-                </p>
+            <span class="gift-label">Valentine Special</span>
+            <div class="voucher-box">
+                <div class="data-amount">₦10,000</div>
+                <p style="color: #555; font-weight: 700;">Data Subscription</p>
             </div>
+            
+            <p style="margin: 20px 0; font-size: 0.95rem; color: #444; line-height: 1.4;">
+                I never want our late-night calls to end. ❤️<br>
+                <strong>Chat me up right now to get your data!</strong>
+            </p>
 
             <div class="btn-group">
-                <button class="main-btn chat-btn" onclick="window.location.href='https://wa.me/YOURNUMBER'">Chat Your Queen 👑</button>
+                <button class="main-btn chat-btn" onclick="window.location.href='https://wa.me/YOURNUMBER?text=Happy%20Valentine%20my%20Queen!%20I%20accept%20the%20gift%20❤️'">Chat Your Queen 👑</button>
             </div>
         </div>
     </div>  
 
 <script>  
+    // Floating Hearts Rain
     function createAmbient() {
         const container = document.getElementById('ambient-elements');
-        const items = ['🌸', '🎈', '💖', '✨', '🌹'];
-        for(let i = 0; i < 20; i++) {
+        const items = ['❤️', '🤍', '💖', '🌹', '✨'];
+        for(let i = 0; i < 25; i++) {
             const el = document.createElement('div');
             el.className = 'floating';
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 100 + 'vw';
-            el.style.fontSize = (Math.random() * 20 + 25) + 'px';
-            el.style.setProperty('--d', (Math.random() * 8 + 7) + 's');
+            el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            el.style.setProperty('--d', (Math.random() * 5 + 4) + 's');
             el.style.animationDelay = (Math.random() * 5) + 's';
             container.appendChild(el);
         }
@@ -195,13 +214,23 @@
     createAmbient();
 
     function celebrate() {
-        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        setTimeout(() => transition('landing-section', 'letter-section'), 500);
+        // Red and White Confetti
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#e63946', '#ffffff', '#ffb3c1']
+        });
+        setTimeout(() => transition('landing-section', 'letter-section'), 600);
     }
 
     function showGift() {
         transition('letter-section', 'gift-section');
-        confetti({ particleCount: 200, spread: 100, colors: ['#f9d423', '#ffffff'] });
+        confetti({
+            particleCount: 100,
+            spread: 100,
+            colors: ['#ffb3c1', '#e63946']
+        });
     }
 
     function transition(curr, next) {
@@ -210,9 +239,11 @@
     }
 
     function moveBtn(btn) {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
         btn.style.position = 'fixed';
-        btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-        btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
         btn.innerText = "Yes? 🥺";
     }
 </script>
