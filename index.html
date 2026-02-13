@@ -168,7 +168,7 @@
             <div class="letter-content">  
                 <p><strong>To my amazing Bamidele,</strong></p>
                 <p>Meeting you was a blessing I didn't see coming, but loving you is a choice I make happily every single day.</p><br>
-                <p>You are my strength, my laughter, and the person I want to share every milestone with. Thank you for being the wonderful man you are.</p>
+                <p>You are my strength, my laughter, and the person I want to share every milestone with.</p>
                 <p>Happy Valentine, my King. ❤️</p>  
             </div>  
             <button class="main-btn gift-btn" onclick="showGift()">Open Your Valentine Gift 🎁</button>
@@ -183,11 +183,11 @@
             
             <p style="margin: 20px 0; font-size: 0.95rem; color: #444; line-height: 1.4;">
                 I never want our late-night calls to end. ❤️<br>
-                <strong>Chat me up right now to get your data!</strong>
+                <strong>Click below to claim your gift in my DM!</strong>
             </p>
 
             <div class="btn-group">
-                <button class="main-btn chat-btn" onclick="window.location.href='https://wa.me/2348050349184?text=Happy%20Valentine%20my%20Queen!%20I%20accept%20the%20gift%20❤️'">Chat Your Queen 👑</button>
+                <button class="main-btn chat-btn" onclick="claimGift()">Chat Your Queen 👑</button>
             </div>
         </div>
     </div>  
@@ -240,6 +240,20 @@
         btn.style.left = x + 'px';
         btn.style.top = y + 'px';
         btn.innerText = "Yes? 🥺";
+    }
+
+    // Direct App Trigger Logic
+    function claimGift() {
+        const phone = "2348050349184";
+        const message = "Happy Valentine my Queen! I accept the gift ❤️";
+        
+        // This tries to open the app directly first
+        window.location.href = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(message)}`;
+        
+        // Fallback for older browsers
+        setTimeout(() => {
+            window.location.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+        }, 500);
     }
 </script>
 </body>  
