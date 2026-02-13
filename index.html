@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+<title>For My Bamidele ❤️</title>  
+<link rel="preconnect" href="https://fonts.googleapis.com">  
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">  
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>  
+    :root {  
+        --primary-pink: #ffafbd; 
+        --deep-rose: #c850c0;  
+        --soft-gold: #d4af37;  
+        --white: #ffffff;  
+        --text-dark: #2d3436;  
+    }  
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }  
+
+    body {  
+        font-family: 'Lato', sans-serif;  
+        background: #ffafbd;  
+        background: linear-gradient(to bottom, #ffc3a0, #ffafbd);
+        color: var(--text-dark);  
+        min-height: 100vh;  
+        display: flex;  
+        align-items: center;  
+        justify-content: center;  
+        overflow-x: hidden;
+        padding: 20px;
+    }  
+
+    /* Floating Balloons & Flowers Background */
+    .floating-element {
+        position: fixed;
+        bottom: -100px;
+        pointer-events: none;
+        z-index: 1;
+        animation: floatUp var(--duration) linear infinite;
+        opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    .container {  
+        position: relative;  
+        z-index: 10;  
+        width: 100%;  
+        max-width: 450px;
+    }  
+
+    .glass-card {  
+        background: rgba(255, 255, 255, 0.9);  
+        backdrop-filter: blur(10px);  
+        -webkit-backdrop-filter: blur(10px);  
+        border-radius: 30px;  
+        padding: 2.5rem 1.8rem;  
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);  
+        text-align: center;  
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }  
+
+    h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--deep-rose); margin-bottom: 0.5rem; }  
+    .cursive { font-family: 'Great Vibes', cursive; color: var(--soft-gold); font-size: 2.5rem; margin-bottom: 10px; display: block; }  
+
+    .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 2rem; width: 100%; }  
+    
+    .main-btn {  
+        width: 100%;
+        padding: 16px;  
+        font-size: 1.1rem;  
+        border-radius: 50px;  
+        border: none;  
+        cursor: pointer;  
+        font-family: 'Playfair Display', serif;  
+        transition: transform 0.2s, box-shadow 0.2s;  
+        font-weight: 700;
+    }  
+
+    #yesBtn, .gift-btn { background: linear-gradient(45deg, #ff9a9e, #fecfef); color: #742a3a; box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4); }  
+    #noBtn { background: #f1f1f1; color: #888; border: 1px solid #ddd; position: relative; }  
+
+    #letter-section, #gift-section { display: none; }
+
+    .letter-content { 
+        line-height: 1.8; 
+        font-size: 1.05rem; 
+        text-align: left; 
+        margin: 1.5rem 0; 
+        max-height: 50vh; 
+        overflow-y: auto; 
+        padding-right: 10px;
+        color: #444;
+    }  
+
+    .gift-box-wrapper {
+        font-size: 5rem;
+        margin: 20px 0;
+        cursor: pointer;
+        animation: wobble 2s infinite;
+    }
+
+    @keyframes wobble {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-5deg); }
+        75% { transform: rotate(5deg); }
+    }
+
+    .data-amount {
+        font-size: 2.5rem;
+        color: var(--deep-rose);
+        font-weight: 700;
+        margin: 10px 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+        h1 { font-size: 1.6rem; }
+        .cursive { font-size: 2rem; }
+        .glass-card { padding: 1.5rem; }
+    }
+</style>  
+</head>  
+<body>  
+    <div id="ambient-elements"></div>
+
+    <div class="container">  
+        <div id="landing-section" class="glass-card">  
+            <span class="cursive">My King, Bamidele...</span>  
+            <h1>Will you be my Valentine?</h1>  
+            <div class="btn-group">  
+                <button class="main-btn" id="yesBtn" onclick="celebrate()">Yes, Forever! 💖</button>  
+                <button class="main-btn" id="noBtn" onmouseover="moveBtn(this)" onclick="moveBtn(this)">No</button>  
+            </div>  
+        </div>  
+
+        <div id="letter-section" class="glass-card">  
+            <span class="cursive">For You, My Love</span>  
+            <div class="letter-content">  
+                <p><strong>To my amazing Bamidele,</strong></p><br>
+                <p>Meeting you was a blessing I didn't see coming, but loving you is a choice I make happily every single day. Your presence in my life brings a peace I can't explain.</p><br>
+                <p>You are my strength, my laughter, and the person I want to share every milestone with. Thank you for being the wonderful man you are.</p><br>
+                <p>I may not have the whole world to give, but I give you my heart and my unwavering support as we grow together.</p><br>
+                <p>Happy Valentine, my King. ❤️</p>  
+            </div>  
+            <button class="main-btn gift-btn" onclick="showGift()">Open Your Valentine Gift 🎁</button>
+        </div>
+
+        <div id="gift-section" class="glass-card">
+            <span class="cursive">Stay Connected</span>
+            <div class="gift-box-wrapper">🎁</div>
+            <h2>A Little Something For You</h2>
+            <div class="data-amount">₦10,000</div>
+            <p style="margin-bottom: 20px;"><b>Worth of Data Subscription</b></p>
+            <p style="font-size: 0.9rem; color: #666;">Because I never want our late-night calls or messages to stop. Use this to stay connected to me, always.</p>
+            <div class="btn-group">
+                <button class="main-btn" onclick="location.reload()">I Love You, Bamidele! 🕊️</button>
+            </div>
+        </div>
+    </div>  
+
+<script>  
+    // Create floating flowers and balloons
+    function createAmbient() {
+        const container = document.getElementById('ambient-elements');
+        const items = ['🌸', '🎈', '💖', '✨', '🌹', '🎈'];
+        for(let i = 0; i < 15; i++) {
+            const el = document.createElement('div');
+            el.className = 'floating-element';
+            el.innerHTML = items[Math.floor(Math.random() * items.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            el.style.setProperty('--duration', (Math.random() * 5 + 5) + 's');
+            el.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(el);
+        }
+    }
+    createAmbient();
+
+    function celebrate() {
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff9a9e', '#fecfef', '#d4af37']
+        });
+        transition('landing-section', 'letter-section');
+    }
+
+    function showGift() {
+        transition('letter-section', 'gift-section');
+        confetti({
+            particleCount: 100,
+            scalar: 1.2,
+            shapes: ['circle'],
+            colors: ['#FFD700']
+        });
+    }
+
+    function transition(curr, next) {
+        const c = document.getElementById(curr);
+        const n = document.getElementById(next);
+        c.style.display = 'none';
+        n.style.display = 'block';
+        n.style.animation = 'fadeIn 0.8s forwards';
+    }
+
+    function moveBtn(btn) {
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        btn.style.position = 'fixed';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+        btn.innerText = "Yes? 🥺";
+    }
+</script>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</body>  
+</html>
